@@ -20,7 +20,8 @@
     "react-router-dom": "^6.15.0",
     "react-scripts": "5.0.1",
     "supertest": "^6.3.3",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "lucide-react": "^0.378.0"
   },
   "scripts": {
     "start": "cross-env BROWSER=none PORT=8081 react-scripts start --disable-host-check --host 0.0.0.0",
