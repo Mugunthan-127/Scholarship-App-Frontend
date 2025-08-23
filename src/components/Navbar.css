@@ -1,0 +1,306 @@
+/* ============================================= */
+/* NAVBAR STYLES - ENHANCED + RESPONSIVE         */
+/* ============================================= */
+
+:root {
+  /* Navbar colors */
+  --navbar-bg: #2c3e50;
+  --navbar-scrolled-bg: rgba(44, 62, 80, 0.95);
+  --navbar-text: #ffffff;
+  --navbar-hover: rgba(255, 255, 255, 0.1);
+  --navbar-accent: #4cc9f0;
+  --navbar-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  
+  /* Button colors */
+  --btn-primary: #4361ee;
+  --btn-primary-hover: #3a56d4;
+  --btn-secondary: #3f37c9;
+  --btn-secondary-hover: #3730a3;
+  
+  /* Transitions */
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.3s ease;
+  
+  /* Sizes */
+  --navbar-height: 70px;
+  --navbar-height-scrolled: 60px;
+}
+
+/* Base Navbar */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--navbar-height);
+  background-color: var(--navbar-bg);
+  color: var(--navbar-text);
+  box-shadow: var(--navbar-shadow);
+  z-index: 1000;
+  transition: all var(--transition-normal);
+  display: flex;
+  align-items: center;
+}
+
+.navbar.scrolled {
+  height: var(--navbar-height-scrolled);
+  backdrop-filter: blur(8px);
+  background-color: var(--navbar-scrolled-bg);
+}
+
+/* Container */
+.container.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 0 2rem;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+/* Brand/Logo */
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--navbar-text);
+  text-decoration: none;
+  transition: transform var(--transition-normal);
+}
+
+.navbar-brand:hover {
+  transform: translateX(5px);
+}
+
+.logo-icon {
+  font-size: 1.8rem;
+  transition: transform var(--transition-normal);
+}
+
+.navbar-brand:hover .logo-icon {
+  transform: rotate(15deg) scale(1.1);
+}
+
+.brand-text {
+  transition: all var(--transition-normal);
+}
+
+.navbar.scrolled .brand-text {
+  font-size: 1.35rem;
+}
+
+/* Navigation Links */
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.navbar-nav {
+  display: flex;
+  list-style: none;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  position: relative;
+  color: var(--navbar-text);
+  text-decoration: none;
+  padding: 0.75rem 1.25rem;
+  font-weight: 500;
+  opacity: 0.9;
+  transition: all var(--transition-normal);
+  border-radius: 6px;
+}
+
+.nav-link .nav-icon {
+  font-size: 1.2rem;
+  transition: transform var(--transition-fast);
+}
+
+.nav-link:hover .nav-icon,
+.nav-link.active .nav-icon {
+  transform: scale(1.2);
+}
+
+.nav-link::before {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background-color: var(--navbar-accent);
+  transition: width var(--transition-normal);
+}
+
+.nav-link:hover,
+.nav-link.active {
+  opacity: 1;
+  background-color: var(--navbar-hover);
+}
+
+.nav-link:hover::before,
+.nav-link.active::before {
+  width: 70%;
+}
+
+/* Mobile Toggle */
+.navbar-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 24px;
+  z-index: 1001;
+}
+
+.toggle-line {
+  display: block;
+  width: 100%;
+  height: 3px;
+  background-color: var(--navbar-text);
+  border-radius: 2px;
+  transition: all var(--transition-normal);
+}
+
+.navbar-toggle.open .toggle-line:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.navbar-toggle.open .toggle-line:nth-child(2) {
+  opacity: 0;
+}
+.navbar-toggle.open .toggle-line:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Action Buttons */
+.nav-actions {
+  display: flex;
+  gap: 1rem;
+  margin-left: 1rem;
+}
+
+.nav-button {
+  padding: 0.5rem 1.25rem;
+  border-radius: 20px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all var(--transition-normal);
+}
+
+.login-btn {
+  color: var(--navbar-text);
+  background-color: transparent;
+  border: 2px solid var(--navbar-text);
+}
+.login-btn:hover,
+.login-btn:focus {
+  background-color: var(--navbar-text);
+  color: var(--navbar-bg);
+}
+
+.register-btn {
+  color: #fff;
+  background-color: var(--btn-primary);
+  border: 2px solid var(--btn-primary);
+}
+.register-btn:hover,
+.register-btn:focus {
+  background-color: var(--btn-primary-hover);
+  border-color: var(--btn-primary-hover);
+  transform: translateY(-2px);
+}
+
+/* ====================== RESPONSIVE ====================== */
+@media (max-width: 992px) {
+  .navbar-nav {
+    gap: 0.5rem;
+  }
+  .nav-link {
+    padding: 0.5rem 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar-right {
+    gap: 1rem;
+  }
+  .navbar-toggle {
+    display: flex;
+  }
+
+  /* Slide-down mobile menu */
+  .navbar-nav {
+    position: fixed;
+    top: var(--navbar-height);
+    left: 0;
+    right: 0;
+    background-color: var(--navbar-bg);
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem 0 2rem;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease, opacity 0.3s ease;
+    opacity: 0;
+    box-shadow: var(--navbar-shadow);
+  }
+  .navbar-nav.show {
+    max-height: 100vh;
+    opacity: 1;
+  }
+
+  .nav-link {
+    width: 100%;
+    padding: 1.25rem 2rem;
+    justify-content: center;
+    border-radius: 0;
+  }
+  .nav-link::before {
+    display: none;
+  }
+  .nav-link:hover,
+  .nav-link.active {
+    background-color: rgba(255, 255, 255, 0.15);
+  }
+
+  .nav-actions {
+    display: none;
+  }
+}
+
+/* Animation for mobile menu items */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.navbar-nav.show .nav-link {
+  animation: fadeIn 0.3s ease forwards;
+}
+.navbar-nav.show .nav-link:nth-child(1) { animation-delay: 0.1s; }
+.navbar-nav.show .nav-link:nth-child(2) { animation-delay: 0.2s; }
+.navbar-nav.show .nav-link:nth-child(3) { animation-delay: 0.3s; }
+.navbar-nav.show .nav-link:nth-child(4) { animation-delay: 0.4s; }
+.navbar-nav.show .nav-link:nth-child(5) { animation-delay: 0.5s; }
+
+/* Focus visible for accessibility */
+.nav-link:focus-visible,
+.nav-button:focus-visible {
+  outline: 2px dashed var(--navbar-accent);
+  outline-offset: 3px;
+}
